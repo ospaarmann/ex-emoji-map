@@ -59,5 +59,17 @@ iex> EmojiMap.Go.go
 
 More to come. This is only the very first part. We now wire it up with the frontend and make the Emojis pop up the map.
 
+## References
+### Elixir GenStage
+  * [Announcing GenStage](elixir-lang.org/blog/2016/07/14/announcing-genstage/)
+  * [Great article explaining Elixir's GenStage by Mario Flach](https://almightycouch.org/blog/reactive-tweets-elixir-genstage/)
+  * [GenStage Docs](https://hexdocs.pm/gen_stage/GenStage.html)
+  * [Example on storing demand and events](https://github.com/elixir-lang/gen_stage/blob/master/examples/gen_event.exs#L4)
+  * [Erlang Queue Docs (used in the TweetBroadcaster module)](http://erlang.org/doc/man/queue.html)
+
+### Angular 2
+  * [Angular 2 Seed](https://github.com/mgechev/angular-seed)
+
+
 ## License
 MIT
