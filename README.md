@@ -58,3 +58,6 @@ iex> EmojiMap.Go.go
 ```
 
 More to come. This is only the very first part. We now wire it up with the frontend and make the Emojis pop up the map.
+
+## Licence
+MIT
