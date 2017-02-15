@@ -10,13 +10,18 @@ There are a couple of things you have to do to get this baby rolling.
 
 ```
 # Clone the repo
+
 $ git clone http://github.com/ospaarmann/ex-emoji-map
 $ cd ex-emoji-map/backend
+
+# Get dependencies
+
 $ mix deps.get
 
 # Create a file for the environment variables.
 # This is just to make your life easier. You can handle them however
 # you want and this is only for dev mode locally.
+
 $ touch .env
 ```
 
@@ -36,12 +41,12 @@ You should now be good to go. Give it a test with
 ```
 $ iex -S mix phoenix.server
 
-# Then in the Elixir console (This is just a
-# module + function to start things off):
+# Then in the Elixir console (This is just a module + function to start things off):
+
 iex> EmojiMap.Go.go
 
 # And you should see Emojis plus GPS coordinates pop up:
-{:allgood, :catch}
+
 {#PID<0.344.0>, %{coordinates: "-72.10207296,-36.60767116", text: "☕"}, :ok}
 {#PID<0.343.0>, %{coordinates: "-72.10207296,-36.60767116", text: "☕"}, :ok}
 {#PID<0.344.0>, %{coordinates: "7.37148349,53.22267175", text: "💖"}, :ok}
