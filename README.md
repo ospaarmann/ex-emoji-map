@@ -25,7 +25,7 @@ $ mix deps.get
 $ touch .env
 ```
 
-Now open the `.env` file inside the backend folder that you just created with an editor and add your Twitter API Credentials. It should look like this:
+Now open the `.env` file inside the backend folder that you just created with an editor and add your Twitter API Credentials. You have to register an App over at [Twitter](https://apps.twitter.com/) to get the credentials. Your file should look like this afterward:
 
 ```shellshell
 export TWITTER_CONSUMER_KEY="YOUR_SECRET_VALUE"
