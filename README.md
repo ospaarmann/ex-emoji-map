@@ -25,7 +25,7 @@ $ mix deps.get
 $ touch .env
 ```
 
-Now open the `.env` file inside the backend folder that you just created with an editor and add your Twitter API Credentials. You have to register an App over at [Twitter](https://apps.twitter.com/) to get the credentials. Your file should look like this afterward:
+Now open the `.env` file inside the backend folder that you just created with an editor and add your Twitter API Credentials. You have to register an App over at [Twitter](https://apps.twitter.com/) to get the credentials. Your file should look like this afterwards:
 
 ```shellshell
 export TWITTER_CONSUMER_KEY="YOUR_SECRET_VALUE"
@@ -34,7 +34,7 @@ export TWITTER_ACCESS_TOKEN="YOUR_SECRET_VALUE"
 export TWITTER_ACCESS_TOKEN_SECRET="YOUR_SECRET_VALUE"
 ```
 
-Now you just have to run `source .env` **whenever you open a new terminal window**. Why am I not just writing it directly into config/config.exs or config/dev.exs? To prevent you from accidentally publishing your API keys when you publish a changed version of this code. And because I like this way of doing things.
+Now you just have to run `$ source .env` **whenever you open a new terminal window**. Why am I not just writing it directly into config/config.exs or config/dev.exs? To prevent you from accidentally publishing your API keys when you publish a changed version of this code. And because I like this way of doing things.
 
 You should now be good to go. Give it a test with
 
