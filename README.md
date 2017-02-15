@@ -8,7 +8,7 @@ If you have questions please don't hesitate to reach out to me. Please also just
 ### Elixir Backend
 There are a couple of things you have to do to get this baby rolling.
 
-```
+```shell
 # Clone the repo
 
 $ git clone http://github.com/ospaarmann/ex-emoji-map
@@ -27,7 +27,7 @@ $ touch .env
 
 Now open the `.env` file inside the backend folder that you just created with an editor and add your Twitter API Credentials. It should look like this:
 
-```
+```shellshell
 export TWITTER_CONSUMER_KEY="YOUR_SECRET_VALUE"
 export TWITTER_CONSUMER_SECRET="YOUR_SECRET_VALUE"
 export TWITTER_ACCESS_TOKEN="YOUR_SECRET_VALUE"
@@ -38,7 +38,7 @@ Now you just have to run `source .env` **whenever you open a new terminal window
 
 You should now be good to go. Give it a test with
 
-```
+```shell
 $ iex -S mix phoenix.server
 
 # Then in the Elixir console (This is just a module + function to start things off):
