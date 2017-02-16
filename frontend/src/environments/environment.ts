@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // Get your access token over at http://mapbox.com
+  mapbox_access_token: 'YOUR_ACCESS_TOKEN',
+  // Get your style over at http://mapbox.com
+  mapbox_style_url: 'mapbox://styles/ospaarmann/ciz665mhb00ff2ss2c4vzwzj5'
 };
