@@ -41,10 +41,6 @@ You should now be good to go. Give it a test with
 ```shell
 $ iex -S mix phoenix.server
 
-# Then in the Elixir console (This is just a module + function to start things off):
-
-iex> EmojiMap.Go.go
-
 # And you should see Emojis plus GPS coordinates pop up:
 
 {#PID<0.344.0>, %{coordinates: "-72.10207296,-36.60767116", text: "☕"}, :ok}
