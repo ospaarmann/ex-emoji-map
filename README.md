@@ -1,6 +1,6 @@
 # EmojiMap 😀🙃😘
 
-This is a just for fun project to illustrate the power of Elixir. Specifically of GenStage together with Websockets in the form of Phoenix Channels. This app consists of two parts. A backend written in Elixir and an Angular 2 frontend. Angular 2 is surely an overkill here but I just wanted to illustrate how to wire them together via Phoenix Sockets.
+This is a just for fun project to illustrate the power of Elixir. Specifically of GenStage together with Websockets in the form of Phoenix Channels. This app consists of two parts. A backend written in Elixir and an Angular 2 frontend. Angular 2 is surely an overkill here but I just wanted to illustrate how to wire them together via Phoenix Channels.
 
 If you have questions please don't hesitate to reach out to me. Please also just fork the repo and do with it whatever you want. The purpose here is learning. I took heavy inspiration from the documentation and from some blog posts. I mention the sources at the bottom. Thanks!
 
