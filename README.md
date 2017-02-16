@@ -2,7 +2,7 @@
 
 This is a just for fun project to illustrate the power of Elixir. Specifically of GenStage together with Websockets in the form of Phoenix Channels. This app consists of two parts. A backend written in Elixir and an Angular 2 frontend. Angular 2 is surely an overkill here but I just wanted to illustrate how to wire them together via Phoenix Sockets.
 
-If you have questions please don't hesitate to reach out to me. Please also just fork the repo and do with it whatever you want. The purpose here is learning. I took heavy inspiration from the documentation and from some blog posts. I will mention the sources at the bottom. Thanks! The Angular 2 part is based on the [fantastic seed repo from Minko Gechev](https://github.com/mgechev/angular-seed). I can only recommend it as a starting point.
+If you have questions please don't hesitate to reach out to me. Please also just fork the repo and do with it whatever you want. The purpose here is learning. I took heavy inspiration from the documentation and from some blog posts. I mention the sources at the bottom. Thanks!
 
 ## Getting Started
 ### Elixir Backend
@@ -68,7 +68,7 @@ More to come. This is only the very first part. We now wire it up with the front
   * [Erlang Queue Docs (used in the TweetBroadcaster module)](http://erlang.org/doc/man/queue.html)
 
 ### Angular 2
-  * [Angular 2 Seed](https://github.com/mgechev/angular-seed)
+  
 
 
 ## License
