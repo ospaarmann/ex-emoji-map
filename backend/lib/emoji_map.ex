@@ -12,6 +12,7 @@ defmodule EmojiMap do
       supervisor(EmojiMap.Endpoint, []),
       # Start your own worker by calling: EmojiMap.Worker.start_link(arg1, arg2, arg3)
       # worker(EmojiMap.Worker, [arg1, arg2, arg3]),
+      worker(EmojiMap.TweetBufferFiller, [[name: :tweet_buffer_filler]]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

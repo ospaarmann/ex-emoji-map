@@ -1,32 +1,38 @@
 defmodule EmojiMap.TweetBufferFiller do
-  @moduledoc """
-  Starts the TweetBroadcaster and multiple TweetPrinter. Then starts the
-  Twitter Stream in a seperate process via Task.async so that we don't block
-  our console. This should probably be done in a GenServer.
-  """
+
+  use GenServer
 
   alias EmojiMap.TweetBroadcaster
   alias EmojiMap.TweetConsumer
   alias EmojiMap.TwitterStream
 
-  def start() do
-    try do
-      TweetBroadcaster.start_link()
+  def start_link(opts \\ []) do
+    {:ok, pid} = GenServer.start_link(__MODULE__, [], opts)
+    # And immediately start the buffer filler process.
+    # I am not sure if this is the best way to handle this.
+    # Maybe someone can comment on this.
+    start_buffer_filler()
+    {:ok, pid}
+  end
 
-      # start multiple producers
-      TweetConsumer.start_link()
-      TweetConsumer.start_link()
+  def start_buffer_filler do
+    GenServer.cast(:tweet_buffer_filler, {:start})
+  end
 
-      task = Task.async(fn ->
-        TwitterStream.get_emoji_stream()
-        # Here the interesting part happens. We Stream.map the notify function of the TweetBroadcaster in the stream. As soon as we enumerate over the stream (via Enum.to_list/1) every tweet will be sent to the TweetBroadcaster and from there broadcasted to all consumers (or kept in a queue)
-        |> Stream.map(&TweetBroadcaster.sync_notify(&1))
-        |> Enum.to_list()
-      end)
-      Task.await(task, 1000) # one sec
-    catch
-      :exit, {:timeout, {Task, :await, [_, 1000]}} ->
-        {:allgood, :catch}
-    end
+  ## Server Callbacks
+
+  def init([]) do
+    {:ok, []}
+  end
+
+  def handle_cast({:start}, _from) do
+    TweetBroadcaster.start_link()
+    TweetConsumer.start_link()
+
+    TwitterStream.get_emoji_stream()
+    |> Stream.map(&TweetBroadcaster.sync_notify(&1))
+    |> Enum.to_list()
+
+    {:noreply, []}
   end
 end
