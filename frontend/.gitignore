@@ -4,6 +4,9 @@
 /dist
 /tmp
 
+# Config files
+/src/environments/environment.prod.ts
+
 # dependencies
 /node_modules
 
