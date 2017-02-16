@@ -68,7 +68,7 @@ More to come. This is only the very first part. We now wire it up with the front
   * [Erlang Queue Docs (used in the TweetBroadcaster module)](http://erlang.org/doc/man/queue.html)
 
 ### Angular 2
-  
+  * [Getting started with Angular 2](https://angular.io/docs/js/latest/quickstart.html)
 
 
 ## License
