@@ -22,7 +22,8 @@ defmodule EmojiMap.TwitterStream do
       emoji = x.text |> reduce_to_emoji
       |> first_emoji
 
-      %{emoji: emoji, text: x.text, screen_name: x.user.screen_name, coordinates: coordinates}
+      %{emoji: emoji, text: x.text, screen_name: x.user.screen_name,
+      profile_image_url: x.user.profile_image_url, coordinates: coordinates}
     end)
   end
 

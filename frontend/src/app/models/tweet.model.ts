@@ -1,22 +1,24 @@
 import { BaseModel } from './base.model';
 
-export interface EmojiInterface {
+export interface TweetInterface {
 
   coordinates:string;
   coordinates_array:Array<number>;
   text:string;
   emoji:string;
   screen_name:string;
+  profile_image_url:string;
 
 }
 
-export class Emoji extends BaseModel implements EmojiInterface {
+export class Tweet extends BaseModel implements TweetInterface {
 
   coordinates:string;
   coordinates_array:Array<number>;
   text:string;
   emoji:string;
   screen_name:string;
+  profile_image_url:string;
 
   constructor(data?: any) {
     super(data);

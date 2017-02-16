@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 import { MapService } from './map.service';
-import { Emoji } from '../models/emoji.model';
+import { Tweet } from '../models/tweet.model';
 
 /*
 need to explicitly import * for untyped modules import * as Phoenix from node_modules;
@@ -32,9 +32,9 @@ export class PhoenixChannelService {
     this.channel.onClose(e => console.log('channel closed', e));
 
     this.channel.on('new:msg', msg => {
-      let emoji = new Emoji(msg);
+      let tweet = new Tweet(msg);
       // Draw it on the map
-      this.mapService.addEmoji(emoji);
+      this.mapService.addTweet(tweet);
     });
   }
 

@@ -1,2 +1,2 @@
 export * from './base.model';
-export * from './emoji.model';
+export * from './tweet.model';
