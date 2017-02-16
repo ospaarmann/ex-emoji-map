@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { MapService } from './services/map.service';
+import { MapService, PhoenixChannelService } from './services/index';
 
 import { AppComponent } from './app.component';
 
@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [MapService],
+  providers: [MapService, PhoenixChannelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

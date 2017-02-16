@@ -8,5 +8,7 @@ export const environment = {
   // Get your access token over at http://mapbox.com
   mapbox_access_token: 'YOUR_ACCESS_TOKEN',
   // Get your style over at http://mapbox.com
-  mapbox_style_url: 'mapbox://styles/ospaarmann/ciz665mhb00ff2ss2c4vzwzj5'
+  mapbox_style_url: 'mapbox://styles/ospaarmann/ciz665mhb00ff2ss2c4vzwzj5',
+  // Configure the Websocket connection
+  socket_endpoint: 'ws://localhost:4000'
 };
