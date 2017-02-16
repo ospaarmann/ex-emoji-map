@@ -28,19 +28,29 @@ export class MapService {
   }
 
   addEmoji(emoji:Emoji):any {
-    this.addMarker(emoji.text, emoji.coordinates_array);
-  }
 
-  addMarker(text:string, coordinates:Array<number>):any {
     var el = document.createElement('div');
     el.className = 'emoji';
-    var newContent = document.createTextNode(text);
+    var newContent = document.createTextNode(emoji.emoji);
     el.appendChild(newContent); //add the text node to the newly created div.
+
+    // Handle Popup
+    var textWithLinks = this.urlify(emoji.text);
+    var popup_content = '<a href="http://twitter.com/' + emoji.screen_name +
+    '" target="_blank" class="screen_name">@' + emoji.screen_name + '</a>: ' + textWithLinks
+    var popup = new mapboxgl.Popup({offset: 25})
+    .setHTML(popup_content);
 
     // add marker to map
     new mapboxgl.Marker(el, {offset: [-10, -10]})
-        .setLngLat(coordinates)
+        .setLngLat(emoji.coordinates_array)
+        .setPopup(popup)
         .addTo(this.map);
+  }
+
+  urlify(text:string):string {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, '<a href="$1" target="_blank">$1</a>')
   }
 
 }

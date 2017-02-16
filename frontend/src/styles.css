@@ -16,4 +16,25 @@ html, body {
   width: 20px;
   height: 20px;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 300px;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+}
+
+.mapboxgl-popup-content {
+  font-size: 11px;
+  line-heigt: 1.4em;
+}
+
+.mapboxgl-popup-content a {
+  color: #000;
+}
+
+.mapboxgl-popup-content .screen_name {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
 }
