@@ -1,8 +1,8 @@
-defmodule EmojiMap.UserSocket do
+defmodule EmojiMap.MapSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", EmojiMap.RoomChannel
+  channel "map:*", EmojiMap.MapChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -1,7 +1,7 @@
 defmodule EmojiMap.Endpoint do
   use Phoenix.Endpoint, otp_app: :emoji_map
 
-  socket "/socket", EmojiMap.UserSocket
+  socket "/map_socket", EmojiMap.MapSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #

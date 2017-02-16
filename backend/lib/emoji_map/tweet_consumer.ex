@@ -21,7 +21,8 @@ defmodule EmojiMap.TweetConsumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      # Broadcast it via our Websocket
+      EmojiMap.Endpoint.broadcast "map:updates", "new:msg", %{data: event}
     end
     {:noreply, [], state}
   end
