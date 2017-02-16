@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
+import { Emoji } from '../models/emoji.model';
+
 /*
 need to explicitly import * for untyped modules import * as mapboxgl from 'mapbox-gl.js';
 */
@@ -23,18 +25,21 @@ export class MapService {
     });
     var nav = new mapboxgl.NavigationControl();
     this.map.addControl(nav, 'top-left');
-    this.addMarker();
   }
 
-  addMarker():any {
+  addEmoji(emoji:Emoji):any {
+    this.addMarker(emoji.text, emoji.coordinates_array);
+  }
+
+  addMarker(text:string, coordinates:Array<number>):any {
     var el = document.createElement('div');
     el.className = 'emoji';
-    var newContent = document.createTextNode('😘');
+    var newContent = document.createTextNode(text);
     el.appendChild(newContent); //add the text node to the newly created div.
 
     // add marker to map
     new mapboxgl.Marker(el, {offset: [-10, -10]})
-        .setLngLat([13.4,52.52])
+        .setLngLat(coordinates)
         .addTo(this.map);
   }
 

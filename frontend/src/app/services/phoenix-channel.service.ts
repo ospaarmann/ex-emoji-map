@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
+import { MapService } from './map.service';
+import { Emoji } from '../models/emoji.model';
+
 /*
 need to explicitly import * for untyped modules import * as Phoenix from node_modules;
 */
@@ -12,11 +15,11 @@ export class PhoenixChannelService {
   socket:any;
   channel:any;
 
-  constructor() { }
+  constructor(private mapService:MapService) { }
 
   connect() {
     this.socket = new Phoenix.Socket(environment.socket_endpoint + '/map_socket', {
-      logger: (kind, msg, data) => { console.log('%s: %s', kind, msg, data) }
+      //logger: (kind, msg, data) => { console.log('%s: %s', kind, msg, data) }
     });
 
     this.socket.connect();
@@ -29,7 +32,9 @@ export class PhoenixChannelService {
     this.channel.onClose(e => console.log('channel closed', e));
 
     this.channel.on('new:msg', msg => {
-      console.log(msg);
+      let emoji = new Emoji(msg);
+      // Draw it on the map
+      this.mapService.addEmoji(emoji);
     });
   }
 
