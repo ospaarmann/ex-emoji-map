@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
+import * as Phoenix from 'phoenix';
+
 import { MapService } from './map.service';
 import { Tweet } from '../models/tweet.model';
-
-/*
-need to explicitly import * for untyped modules import * as Phoenix from node_modules;
-*/
-declare var Phoenix: any;
 
 @Injectable()
 export class PhoenixChannelService {
