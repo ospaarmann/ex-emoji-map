@@ -13,7 +13,7 @@
       On the GenStage side of things I have one producer or broadcaster that queues events (aka tweets) that cannot be sent to the consumer and also buffers demand if there are not enough events. This closely follows the <a href="https://hexdocs.pm/gen_stage/GenStage.html" target="_blank">official docs</a> on GenStage.
     </p>
     <p>
-      The Twitter Stream itself is started via the module <code>TweetBufferFiller</a> whis is a <a href="https://hexdocs.pm/elixir/GenServer.html" target="_blank">GenServer</a> because it is a long running process (infite to be precise) and should a) not block the app and b) be part of the supervisor tree. Whenever a new tweet arrives it notifies the GenStage producer / broadcaster via <code>TweetBroadcaster.sync_notify/1</code>, which then (according to demand) notifies the GenStage consumer.
+      The Twitter Stream itself is started via the module <code>TweetBufferFiller</code> whis is a <a href="https://hexdocs.pm/elixir/GenServer.html" target="_blank">GenServer</a> because it is a long running process (infite to be precise) and should a) not block the app and b) be part of the supervisor tree. Whenever a new tweet arrives it notifies the GenStage producer / broadcaster via <code>TweetBroadcaster.sync_notify/1</code>, which then (according to demand) notifies the GenStage consumer.
     </p>
     <p>
       The GenStage consumer in turn pushes these Tweets via a Phoenix Channel (Websocket) down to the frontend.
