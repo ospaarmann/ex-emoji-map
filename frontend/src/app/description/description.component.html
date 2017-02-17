@@ -3,5 +3,20 @@
     <hr>
     <h1>About this project</h1>
     <p class="lead">This is a just for fun project to illustrate the power of Elixir. Specifically of GenStage together with Websockets in the form of Phoenix Channels.</p>
+    <p>
+      I built this web app as a weekend project to play a bit with Elixir’s GenStage together with Websockets. What it basically does is pretty simple: The Elixir backend connects on startup to the <a href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter Stream API</a> via the <a href="https://github.com/parroty/extwitter" target="blank">ExTwitter</a> client library. It then creates a stream for all tweets that are geotagged and contain an emoji.
+    </p>
+    <p>
+      Since the Twitter Stream API doesn’t allow to search for too many keywords via the <code>track</code> parameter and since the <code>track</code> and the <code>location</code> parameters are combined with <code>OR</code> I am only using the <code>location</code> parameter and chose a bounding box that contains basically the whole world. This way I receive only tweets that have a location attached to them. The filtering for emojis is then done on the Elixir side with a (pretty crude) regular expression.
+    </p>
+    <p>
+      On the GenStage side of things I have one producer or broadcaster that queues events (aka tweets) that cannot be sent to the consumer and also buffers demand if there are not enough events. This closely follows the <a href="https://hexdocs.pm/gen_stage/GenStage.html" target="_blank">official docs</a> on GenStage.
+    </p>
+    <p>
+      The Twitter Stream itself is started via the module <code>TweetBufferFiller</a> whis is a <a href="https://hexdocs.pm/elixir/GenServer.html" target="_blank">GenServer</a> because it is a long running process (infite to be precise) and should a) not block the app and b) be part of the supervisor tree. Whenever a new tweet arrives it notifies the GenStage producer / broadcaster via <code>TweetBroadcaster.sync_notify/1</code>, which then (according to demand) notifies the GenStage consumer.
+    </p>
+    <p>
+      The GenStage consumer in turn pushes these Tweets via a Phoenix Channel (Websocket) down to the frontend.
+    </p>
   </div>
 </div>
