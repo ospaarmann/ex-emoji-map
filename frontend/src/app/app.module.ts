@@ -11,12 +11,14 @@ import { MapService, PhoenixChannelService } from './services/index';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import { DescriptionComponent } from './description/description.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    TopbarComponent
+    TopbarComponent,
+    DescriptionComponent
   ],
   imports: [
     BrowserModule,
