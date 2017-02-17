@@ -6,14 +6,21 @@ import { Tweet } from '../models/tweet.model';
 /*
 need to explicitly import * for untyped modules import * as mapboxgl from 'mapbox-gl.js';
 */
-declare var mapboxgl: any;
+declare let mapboxgl: any;
 
 @Injectable()
 export class MapService {
 
   map:any;
+  markerArray:Array<any>;
+  maxMarkers:number;
 
-  constructor() {}
+  constructor() {
+    // To keep track of all markers and remove when maxMarkers is reached
+    this.markerArray = [];
+    // Set maximum number of markers (emojis) to prevent crashing the map
+    this.maxMarkers = 500;
+  }
 
   initMap() {
     mapboxgl.accessToken = environment.mapbox_access_token;
@@ -23,36 +30,41 @@ export class MapService {
         zoom: 1,
         style: environment.mapbox_style_url
     });
-    var nav = new mapboxgl.NavigationControl();
+    let nav = new mapboxgl.NavigationControl();
     this.map.addControl(nav, 'top-left');
   }
 
   addTweet(tweet:Tweet):any {
 
-    var el = document.createElement('div');
+    let el = document.createElement('div');
     el.className = 'emoji';
-    var newContent = document.createTextNode(tweet.emoji);
+    let newContent = document.createTextNode(tweet.emoji);
     el.appendChild(newContent); //add the text node to the newly created div.
 
     // Handle Popup
-    var textWithLinks = this.urlify(tweet.text);
-    var popup_content = '<a href="http://twitter.com/' + tweet.screen_name +
+    let textWithLinks = this.urlify(tweet.text);
+    let popup_content = '<a href="http://twitter.com/' + tweet.screen_name +
     '" target="_blank"><img class="profile_pic" src="' + tweet.profile_image_url + '"></a>' +
     '<a href="http://twitter.com/' + tweet.screen_name +
     '" target="_blank" class="screen_name">@' + tweet.screen_name + '</a>: ' +
     textWithLinks;
-    var popup = new mapboxgl.Popup({offset: 25})
+    let popup = new mapboxgl.Popup({offset: 25})
     .setHTML(popup_content);
 
     // add marker to map
-    new mapboxgl.Marker(el, {offset: [-10, -10]})
+    let marker = new mapboxgl.Marker(el, {offset: [-10, -10]})
         .setLngLat(tweet.coordinates_array)
         .setPopup(popup)
         .addTo(this.map);
+
+    if(this.markerArray.push(marker) > this.maxMarkers) {
+      // we have one to many
+      this.markerArray.shift().remove();
+    }
   }
 
   urlify(text:string):string {
-    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    let urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, '<a href="$1" target="_blank">$1</a>')
   }
 
