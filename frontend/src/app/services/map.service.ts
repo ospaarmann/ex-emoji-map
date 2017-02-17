@@ -19,7 +19,7 @@ export class MapService {
     // To keep track of all markers and remove when maxMarkers is reached
     this.markerArray = [];
     // Set maximum number of markers (emojis) to prevent crashing the map
-    this.maxMarkers = 500;
+    this.maxMarkers = 700;
   }
 
   initMap() {
@@ -58,6 +58,7 @@ export class MapService {
         .addTo(this.map);
 
     if(this.markerArray.push(marker) > this.maxMarkers) {
+      console.log("Maximum number of markers reached");
       // we have one to many
       this.markerArray.shift().remove();
     }
