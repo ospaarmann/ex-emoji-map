@@ -4,22 +4,26 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AlertModule } from 'ng2-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 import { MapService, PhoenixChannelService } from './services/index';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    DropdownModule.forRoot()
   ],
   providers: [MapService, PhoenixChannelService],
   bootstrap: [AppComponent]
