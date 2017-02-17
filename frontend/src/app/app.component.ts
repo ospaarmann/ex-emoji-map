@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { MapService, PhoenixChannelService } from './services/index';
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -8,14 +6,8 @@ import { MapService, PhoenixChannelService } from './services/index';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor(private mapService:MapService,
-    private phoenixChannelService:PhoenixChannelService) {}
-
-  ngOnInit() {
-    this.mapService.initMap();
-    this.phoenixChannelService.connect();
-  }
+  constructor() {}
 
 }
