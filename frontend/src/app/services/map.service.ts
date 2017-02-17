@@ -58,7 +58,6 @@ export class MapService {
         .addTo(this.map);
 
     if(this.markerArray.push(marker) > this.maxMarkers) {
-      console.log("Maximum number of markers reached");
       // we have one to many
       this.markerArray.shift().remove();
     }
