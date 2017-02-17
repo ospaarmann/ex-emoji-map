@@ -13,7 +13,7 @@ defmodule EmojiMap.TwitterStream do
     # Could be refined
     ExTwitter.stream_filter([locations: "-168.8,-57.3,174.4,84.1"], :infinity)
     |> Stream.filter(fn(x) -> x.coordinates != nil end)
-    |> Stream.filter(fn(x) -> Regex.match?(emoji_pattern(), x.text) end)
+    |> Stream.filter(&Regex.match?(emoji_pattern(), &1))
     |> Stream.map(fn(x) ->
       coordinates = x.coordinates |> Map.fetch!(:coordinates)
       |> Enum.map(fn(x) -> "#{x}" end)
