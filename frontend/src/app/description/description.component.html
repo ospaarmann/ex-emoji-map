@@ -3,17 +3,23 @@
     <hr>
     <h1>About this project</h1>
     <p class="lead">This is a just for fun project to illustrate the power of Elixir. Specifically of GenStage together with Websockets in the form of Phoenix Channels.</p>
+    <h3>Introduction</h3>
     <p>
-      I built this web app as a weekend project to play a bit with Elixir’s GenStage together with Websockets. What it basically does is pretty simple: The Elixir backend connects on startup to the <a href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter Stream API</a> via the <a href="https://github.com/parroty/extwitter" target="blank">ExTwitter</a> client library. It then creates a stream for all tweets that are geotagged and contain an emoji.
+      I built this web app as a weekend project to play a bit with Elixir’s GenStage together with Websockets. I recommend starting off with reading this blog post: <a href="elixir-lang.org/blog/2016/07/14/announcing-genstage/" target="_blank">Announcing GenStage</a>. What this app basically does is pretty simple: The Elixir backend connects on startup to the <a href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter Stream API</a> via the <a href="https://github.com/parroty/extwitter" target="blank">ExTwitter</a> client library. It then creates a stream for all tweets that are geotagged and contain an emoji. These tweets are pushed via a Websocket or <a href="http://www.phoenixframework.org/docs/channels" target="_blank">Phoenix Channel</a> to the Angular 2 frontend which draws them as <a href="https://www.mapbox.com/mapbox-gl-js/api/#Marker" target="_blank">markers</a> on a <a href="https://www.mapbox.com" target="_blank">Mapbox</a> map. The maximum number of emojis on the map at the same time is limited to 700 by default to not overload browsers. This is why you will start seeing markers disappear after some time. I could only display markers for the section of the map within view, but the purpose of this demo is to illustrate the power of Elixir, GenStage and Websockets and not to build the perfect emoji map. You can fork my repo and improve.
     </p>
     <p>
-      Since the Twitter Stream API doesn’t allow to search for too many keywords via the <code>track</code> parameter and since the <code>track</code> and the <code>location</code> parameters are combined with <code>OR</code> I am only using the <code>location</code> parameter and chose a bounding box that contains basically the whole world. This way I receive only tweets that have a location attached to them. The filtering for emojis is then done on the Elixir side with a (pretty crude) regular expression.
+      I wrote an article that explains in detail how this app is built. <a href="" target="_blank"><strong>Check it out!</strong></a>
+    </p>
+    <h3>Twitter Stream API</h3>
+    <p>
+      The Twitter Stream API is basically a long-living HTTP request, like a very large file that you download. You can filter by keywords or location (and some other things, check out the docs). Since the Twitter Stream API doesn’t allow to search for too many keywords via the <code>track</code> parameter (every emoji would be a keyword) and since the <code>track</code> and the <code>location</code> parameters are combined with <code>OR</code> I'm only using the <code>location</code> parameter and chose a bounding box that contains basically the whole world. This way I receive only tweets that have a location attached to them. The filtering for emojis is then done on the Elixir side with a (pretty crude) regular expression.
+    </p>
+    <h3>Elixir GenStage</h3>
+    <p>
+      On the GenStage side of things I have one producer or broadcaster that queues events (aka tweets) that cannot be sent to the consumer and buffers the demand of the consumer if there are not enough events. This closely follows the <a href="https://hexdocs.pm/gen_stage/GenStage.html" target="_blank">official docs</a> on GenStage.
     </p>
     <p>
-      On the GenStage side of things I have one producer or broadcaster that queues events (aka tweets) that cannot be sent to the consumer and also buffers demand if there are not enough events. This closely follows the <a href="https://hexdocs.pm/gen_stage/GenStage.html" target="_blank">official docs</a> on GenStage.
-    </p>
-    <p>
-      The Twitter Stream itself is started via the module <code>TweetBufferFiller</code> whis is a <a href="https://hexdocs.pm/elixir/GenServer.html" target="_blank">GenServer</a> because it is a long running process (infite to be precise) and should a) not block the app and b) be part of the supervisor tree. Whenever a new tweet arrives it notifies the GenStage producer / broadcaster via <code>TweetBroadcaster.sync_notify/1</code>, which then (according to demand) notifies the GenStage consumer.
+      The Twitter Stream itself is started via the module <code>TweetBufferFiller</code> which is a <a href="https://hexdocs.pm/elixir/GenServer.html" target="_blank">GenServer</a> because it is a long running process (infinite to be precise) and should a) not block the app and b) be part of the supervisor tree. Whenever a new tweet arrives it notifies the GenStage producer / broadcaster via <code>TweetBroadcaster.sync_notify/1</code>, which then (depending on demand) notifies the GenStage consumer.
     </p>
     <p>
       The GenStage consumer in turn pushes these Tweets via a Phoenix Channel (Websocket) down to the frontend.
