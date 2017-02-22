@@ -8,16 +8,26 @@ defmodule EmojiMap.TwitterStream do
   OR matching the keyword. We have to filter ourself.
   """
 
+  @doc """
+  The main function of this module. Gets the stream, filters for empty
+  coordinates, filters for emojis and then returns a simpler map.
+  """
   def get_emoji_stream do
     # Sometimes the coordinates are still empty. Probably when a place was selected.
     # Could be refined
     ExTwitter.stream_filter([locations: "-168.8,-57.3,174.4,84.1"], :infinity)
-    |> Stream.filter(fn(x) -> x.coordinates != nil end)
+    |> Stream.filter(fn(x) -> x.coordinates != nil || x.place != nil end)
     |> Stream.filter(&Regex.match?(emoji_pattern(), &1.text))
     |> Stream.map(fn(x) ->
-      coordinates = x.coordinates |> Map.fetch!(:coordinates)
-      |> Enum.map(fn(x) -> "#{x}" end)
-      |> Enum.join(",")
+      coordinates = cond do
+        x.coordinates != nil ->
+          x.coordinates |> Map.fetch!(:coordinates)
+          |> coord_arr_to_str
+        x.place != nil ->
+          x.place |> get_coordinates_from_place
+          |> coord_arr_to_str
+        true -> nil
+      end
 
       emoji = x.text |> reduce_to_emoji
       |> first_emoji
@@ -62,6 +72,24 @@ defmodule EmojiMap.TwitterStream do
 
   def first_emoji(input_string) do
     input_string |> String.codepoints |> hd
+  end
+
+  @doc """
+  Turn array with float numbers from Twitter API into String
+  """
+  def coord_arr_to_str(input_arr) do
+    input_arr
+    |> Enum.map(fn(x) -> "#{x}" end)
+    |> Enum.join(",")
+  end
+
+  @doc """
+  Places from the Twitter API are not a single point but a bouding box. For easy
+  use we will just use the first coordinates. To find out more check here:
+  https://dev.twitter.com/overview/api/tweets
+  """
+  def get_coordinates_from_place(%{bounding_box: %{coordinates: [bounding_box]}}) do
+    bounding_box |> hd
   end
 
 end
