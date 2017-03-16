@@ -17,3 +17,8 @@ erl_crash.dump
 
 # Store environment variables in .env file for ease of developing
 /.env
+
+emoji_map.tar.gz
+
+# Deployment
+Dockerfile
