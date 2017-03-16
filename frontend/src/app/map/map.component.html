@@ -1,9 +1,11 @@
-<div class="row" id="map-row">
+<div class="row">
   <div class="col-md-12">
     <div *ngFor="let alert of phoenixChannelService.alerts">
       <alert [type]="alert.type" dismissible="true">{{ alert.msg }}</alert>
     </div>
   </div>
+</div>
+<div class="row" id="map-row">
   <div class="col-md-12" id="map-cols">
     <div id="map"></div>
   </div>
