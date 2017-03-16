@@ -17,7 +17,8 @@ defmodule EmojiMap.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {EmojiMap, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
+     :gettext, :extwitter, :oauther, :gen_stage]]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,6 +35,7 @@ defmodule EmojiMap.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
+     {:exrm, "~> 1.0.8"},
      {:gen_stage, "~> 0.11"},
      {:extwitter, "~> 0.8"},
      {:credo, "~> 0.5", only: [:dev, :test]}]
