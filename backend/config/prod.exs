@@ -13,8 +13,14 @@ use Mix.Config
 # which you typically run after static files are built.
 config :emoji_map, EmojiMap.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  url: [host: "emojibackend.ospaarmann.com", port: 80],
+  #check_origin: ["//${FRONTEND_HOST}"],
+  check_origin: ["//emojimap.ospaarmann.com"],
+  server: true,
+  root: ".",
+  version: "1.0.0"
+
+
 
 # Do not print debug messages in production
 config :logger, level: :info
