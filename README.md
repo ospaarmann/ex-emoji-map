@@ -47,7 +47,7 @@ You should now be good to go. Give it a test with `$ iex -S mix phoenix.server`
 There is not so much work to do here. You just need an API key from [Mapbox](http://mapbox.com). Add this to the file `frontend/src/environments/environment.ts`. You can now fire the frontend up:
 ```shell
 $ cd frontend
-$ ng run
+$ ng serve
 ```
 ## References
 ### Elixir GenStage
