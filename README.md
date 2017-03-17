@@ -60,6 +60,8 @@ $ ng serve
 ### Angular
   * [Getting started with Angular](https://angular.io/docs/js/latest/quickstart.html)
 
+### Emojis
+  * [Exmoji - Emoji encoding swiss army knife for Elixir/Erlang](https://github.com/mroth/exmoji)
 
 ## License
 MIT
