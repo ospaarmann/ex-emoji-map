@@ -55,3 +55,17 @@ p {
   font-size: 16px;
   line-height: 24px;
 }
+
+#emoji-stats .list-group-item {
+  border: 0;
+}
+
+#emoji-stats .list-group-item button {
+  width: 100%;
+  font-size: 20px;
+  cursor: default;
+}
+
+#emoji-stats .list-group-item button .badge {
+  font-size: 16px;
+}

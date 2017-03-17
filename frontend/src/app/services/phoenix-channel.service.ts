@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import * as Phoenix from 'phoenix';
 
 import { MapService } from './map.service';
+import { StatisticsService } from './statistics.service';
 import { Tweet } from '../models/tweet.model';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class PhoenixChannelService {
   public channel:any;
   public alerts:Array<any>;
 
-  constructor(private mapService:MapService) {
+  constructor(private mapService:MapService, private statisticsService:StatisticsService) {
     this.alerts = [];
   }
 
@@ -47,6 +48,7 @@ export class PhoenixChannelService {
       let tweet = new Tweet(msg);
       // Draw it on the map
       this.mapService.addTweet(tweet);
+      this.statisticsService.addTweet(tweet);
     });
   }
 

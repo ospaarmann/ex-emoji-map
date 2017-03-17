@@ -6,19 +6,21 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
-import { MapService, PhoenixChannelService } from './services/index';
+import { MapService, PhoenixChannelService, StatisticsService } from './services/index';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { DescriptionComponent } from './description/description.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     TopbarComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import { DescriptionComponent } from './description/description.component';
     AlertModule.forRoot(),
     DropdownModule.forRoot()
   ],
-  providers: [MapService, PhoenixChannelService],
+  providers: [MapService, PhoenixChannelService, StatisticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
