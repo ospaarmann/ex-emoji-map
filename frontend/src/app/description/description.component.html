@@ -6,7 +6,7 @@
       This is a simple map that shows all geotagged tweets worldwide and in real-time that contain an emoji. It is really fast. Try for yourself by tweeting anything with an emoji and a location and see the tweet pop up on the map in milliseconds. You can see the whole tweet by clicking on the emoji.
     </p>
     <p>
-      I built this web app as a weekend project to illustrate the power of <a href="http://elixir-lang.org/" target="_blank">Elixir</a>. Specifically of GenStage together with WebSockets in the form of <a href="http://www.phoenixframework.org/docs/channels" target="_blank">Phoenix Channels</a>. I recommend starting off with reading this blog post: <a href="http://elixir-lang.org/blog/2016/07/14/announcing-genstage/" target="_blank">Announcing GenStage</a>. What this app basically does is pretty simple: The Elixir backend connects on startup to the <a href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter Stream API</a> via the <a href="https://github.com/parroty/extwitter" target="_blank">ExTwitter client library</a>. It then filters the stream for all tweets that are geotagged and contain an emoji. These tweets are pushed via a WebSocket or Phoenix Channel to the Angular frontend which draws them as markers on a <a href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank">Mapbox</a> map.
+      I built this web app as a weekend project to illustrate the power of <a href="http://elixir-lang.org/" target="_blank">Elixir</a>. Specifically of GenStage together with WebSockets in the form of <a href="http://www.phoenixframework.org/docs/channels" target="_blank">Phoenix Channels</a>. I recommend starting off with reading this blog post: <a href="http://elixir-lang.org/blog/2016/07/14/announcing-genstage/" target="_blank">Announcing GenStage</a>. What this app basically does is pretty simple: The Elixir backend connects on startup to the <a href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter Stream API</a> via the <a href="https://github.com/parroty/extwitter" target="_blank">ExTwitter client library</a>. It then filters the stream for all tweets that are geotagged and contain an emoji (using the <a href="https://github.com/mroth/exmoji" target="_blank">Exmoji</a> library). These tweets are pushed via a WebSocket or Phoenix Channel to the Angular frontend which draws them as markers on a <a href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank">Mapbox</a> map.
     </p>
     <p>
       The maximum number of emojis on the map at the same time is limited to 700 by default to not overload browsers. This is why you will start seeing markers disappear after some time. I could only display markers for the section of the map within view, but the purpose of this demo is to illustrate the power of Elixir, GenStage, and Websockets and not to build the perfect emoji map. Feel free to fork my <a href="https://github.com/ospaarmann/ex-emoji-map" target="_blank">repo</a> and improve.
@@ -15,16 +15,19 @@
       The technology behind this app is great and this thing is fast! Try it. Zoom in where you're currently at, send a tweet (don't forget to add a location and an emoji) and wait until it pops up. Building something like this with regular polling of a REST API would be very difficult and not nearly as fast and performant.
     </p>
     <p>
-      I wrote an article that explains in detail how this app is built. Check it out! You find the whole source code on <a href="https://github.com/ospaarmann/ex-emoji-map" target="_blank">GitHub</a>.
+      <strong>I wrote an article that explains in detail how this app was built. Check it out! You find the whole source code on <a href="https://github.com/ospaarmann/ex-emoji-map" target="_blank">GitHub</a>.</strong>
     </p>
     <p>
-      Both backend and frontend are deployed with Docker on a $20 DigitalOcean droplet. The guys over at DigitalOcean where really helpful, go check it out if you haven't. <a href="http://www.digitalocean.com/?refcode=1f80cc871b86" target="_blank">You get $10 when signing up via this link</a>. A good guide on how to get started with Docker on DigitalOcean can be found <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04" target="_blank">here</a>.
+      Both backend and frontend are deployed with Docker on a $20 DigitalOcean droplet. The guys over at DigitalOcean where really helpful, go check it out if you haven't. <a href="http://www.digitalocean.com/?refcode=1f80cc871b86" target="_blank"><strong>You get $10 when signing up via this link</strong></a>. A good guide on how to get started with Docker on DigitalOcean can be found <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04" target="_blank">here</a>.
     </p>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12" id="tech-stack">
     <hr>
+    <p>
+      Twitter EmojiMap brought to you with ❤️ by <a href="https://github.com/ospaarmann" target="_blank">Ole Spaarmann</a>
+    </p>
     <br>
     <br>
     <br>
