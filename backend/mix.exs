@@ -38,6 +38,8 @@ defmodule EmojiMap.Mixfile do
      {:exrm, "~> 1.0.8"},
      {:gen_stage, "~> 0.11"},
      {:extwitter, "~> 0.8"},
+     {:poison, "~> 2.0", override: true},
+     {:exmoji, "~> 0.2.2"},
      {:credo, "~> 0.5", only: [:dev, :test]}]
   end
 end
