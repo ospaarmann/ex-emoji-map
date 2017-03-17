@@ -50,3 +50,8 @@ html, body {
   font-weight: bold;
   text-decoration: none;
 }
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+}
