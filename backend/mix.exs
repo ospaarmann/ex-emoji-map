@@ -18,7 +18,7 @@ defmodule EmojiMap.Mixfile do
   def application do
     [mod: {EmojiMap, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
-     :gettext, :extwitter, :oauther, :gen_stage]]
+     :gettext, :extwitter, :oauther, :gen_stage, :exmoji]]
   end
 
   # Specifies which paths to compile per environment.
