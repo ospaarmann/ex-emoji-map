@@ -1,12 +1,16 @@
 # EmojiMap 😀🙃😘
+## See it in action
+[Online demo can be found here.](http://emojimap.ospaarmann.com)
+## About this project
+A simple map that shows all geotagged tweets worldwide and in real-time that contain an emoji. It is really fast. Try for yourself by tweeting anything with an emoji and a location and see the tweet pop up on the map in milliseconds. You can see the whole tweet by clicking on the emoji.
 
-This is a just for fun project to illustrate the power of Elixir. Specifically of GenStage together with Websockets in the form of Phoenix Channels. This app consists of two parts. A backend written in Elixir and an Angular 2 frontend. Angular 2 is surely an overkill here but I just wanted to illustrate how to wire them together via Phoenix Channels.
+I built this web app as a weekend project to illustrate the power of Elixir. Specifically of GenStage together with WebSockets in the form of Phoenix Channels. I recommend starting off with reading this blog post: Announcing GenStage. What this app basically does is pretty simple: The Elixir backend connects on startup to the Twitter Stream API via the ExTwitter client library. It then filters the stream for all tweets that are geotagged and contain an emoji. These tweets are pushed via a WebSocket or Phoenix Channel to the Angular frontend which draws them as markers on a Mapbox map.
 
 If you have questions please don't hesitate to reach out to me. Please also just fork the repo and do with it whatever you want. The purpose here is learning. I took heavy inspiration from the documentation and from some blog posts. I mention the sources at the bottom. Thanks!
 
-## Getting Started
+## Getting started
+There are a couple of things you have to do to get this baby rolling. I assume that you have installed everything necessary like Elixir/Erlang, NPM and angular-cli.
 ### Elixir Backend
-There are a couple of things you have to do to get this baby rolling.
 
 ```shell
 # Clone the repo
@@ -36,25 +40,13 @@ export TWITTER_ACCESS_TOKEN_SECRET="YOUR_SECRET_VALUE"
 
 Now you just have to run `$ source .env` **whenever you open a new terminal window**. Why am I not just writing it directly into config/config.exs or config/dev.exs? To prevent you from accidentally publishing your API keys when you publish a changed version of this code. And because I like this way of doing things.
 
-You should now be good to go. Give it a test with
-
+You should now be good to go. Give it a test with `$ iex -S mix phoenix.server`
+### Frontend
+There is not so much work to do here. You just need an API key from [Mapbox](http://mapbox.com). Add this to the file `frontend/src/environments/environment.ts`. You can now fire the frontend up:
 ```shell
-$ iex -S mix phoenix.server
-
-# And you should see Emojis plus GPS coordinates pop up:
-
-{#PID<0.344.0>, %{coordinates: "-72.10207296,-36.60767116", text: "☕"}, :ok}
-{#PID<0.343.0>, %{coordinates: "-72.10207296,-36.60767116", text: "☕"}, :ok}
-{#PID<0.344.0>, %{coordinates: "7.37148349,53.22267175", text: "💖"}, :ok}
-{#PID<0.343.0>, %{coordinates: "7.37148349,53.22267175", text: "💖"}, :ok}
-{#PID<0.344.0>, %{coordinates: "-6.16206674,53.39156607", text: "⚽"}, :ok}
-{#PID<0.343.0>, %{coordinates: "-6.16206674,53.39156607", text: "⚽"}, :ok}
-{#PID<0.344.0>, %{coordinates: "-51.92907,-23.45233", text: "💄"}, :ok}
-{#PID<0.343.0>, %{coordinates: "-51.92907,-23.45233", text: "💄"}, :ok}
+$ cd frontend
+$ ng run
 ```
-
-More to come. This is only the very first part. We now wire it up with the frontend and make the Emojis pop up the map.
-
 ## References
 ### Elixir GenStage
   * [Announcing GenStage](elixir-lang.org/blog/2016/07/14/announcing-genstage/)
@@ -63,8 +55,8 @@ More to come. This is only the very first part. We now wire it up with the front
   * [Example on storing demand and events](https://github.com/elixir-lang/gen_stage/blob/master/examples/gen_event.exs#L4)
   * [Erlang Queue Docs (used in the TweetBroadcaster module)](http://erlang.org/doc/man/queue.html)
 
-### Angular 2
-  * [Getting started with Angular 2](https://angular.io/docs/js/latest/quickstart.html)
+### Angular
+  * [Getting started with Angular](https://angular.io/docs/js/latest/quickstart.html)
 
 
 ## License
