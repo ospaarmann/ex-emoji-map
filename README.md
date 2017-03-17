@@ -1,5 +1,6 @@
 # EmojiMap 😀🙃😘
 ## See it in action
+![emoji-gif](https://cloud.githubusercontent.com/assets/308086/24044569/2319964a-0b1c-11e7-809b-a0820a0c0550.gif)
 [Online demo can be found here.](http://emojimap.ospaarmann.com)
 ## About this project
 A simple map that shows all geotagged tweets worldwide and in real-time that contain an emoji. It is really fast. Try for yourself by tweeting anything with an emoji and a location and see the tweet pop up on the map in milliseconds. You can see the whole tweet by clicking on the emoji.
